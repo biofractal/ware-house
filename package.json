@@ -2,7 +2,7 @@
   "name": "ware-house",
   "version": "1.0.0",
   "description": "A central warehouse API for product management and pick-packing control",
-  "main": "app.js",
+  "main": "node-server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/biofractal/ware-house/issues"
   },
-  "homepage": "https://github.com/biofractal/ware-house"
+  "homepage": "https://github.com/biofractal/ware-house",
+  "dependencies": {
+    "body-parser": "^1.12.0",
+    "express": "^4.11.2",
+    "mongoose": "^3.8.23",
+    "winston": "^0.9.0"
+  }
 }

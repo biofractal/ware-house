@@ -4,11 +4,11 @@
   "description": "A central warehouse API for product management and pick-packing control",
   "main": "node-server.js",
   "scripts": {
-    "start": "npm run clean && npm run copy && npm run transpile && npm run start-node",
+    "start": "npm run clean && npm run transpile && npm run copy && npm run start-node",
     "clean": "if exist lib rmdir lib /s /q",
+    "transpile": "start /B coffee --output ./lib -cw src",
     "copy": "copy .env lib",
-    "transpile": "coffee --output ./lib --compile src",
-    "start-node": "node ./lib/node-server.js"
+    "start-node": "start /B nodemon ./lib/node-server.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,10 @@
     "express": "^4.11.2",
     "mongoose": "^3.8.23",
     "request": "^2.53.0",
+    "watch": "^0.14.0",
     "winston": "^0.9.0"
+  },
+  "devDependencies": {
+    "npm-watch": "0.0.0"
   }
 }

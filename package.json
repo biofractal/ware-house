@@ -5,7 +5,7 @@
   "main": "node-server.js",
   "scripts": {
     "start": "npm run clean && npm run copy && npm run transpile && npm run start-node",
-    "clean": "rmdir lib /s /q",
+    "clean": "if exist lib rmdir lib /s /q",
     "copy": "copy .env lib",
     "transpile": "coffee --output ./lib --compile src",
     "start-node": "node ./lib/node-server.js"

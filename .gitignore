@@ -1,14 +1,6 @@
 node_modules
 bower_components
-dist
-iis
-
-.DS_Store
-
+lib
 *.sublime-workspace
-
-build/*
-
 .env
-
 *.log

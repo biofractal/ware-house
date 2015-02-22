@@ -5,14 +5,5 @@
 			"follow_symlinks": true,
 			"path": "."
 		}
-	],
-		"settings":
-    {
-        "CoffeeScript":
-        {
-            "noWrapper": true,
-            "compileOnSave": true,
-            "compileDir": "/iis"
-        }
-    }
+	]
 }

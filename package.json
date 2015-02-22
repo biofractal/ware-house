@@ -4,7 +4,7 @@
   "description": "A central warehouse API for product management and pick-packing control",
   "main": "node-server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "coffee --output ./lib --compile src | node ./lib/node-server.js"
   },
   "repository": {
     "type": "git",

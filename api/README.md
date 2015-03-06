@@ -15,4 +15,4 @@
 
 ### Who do I talk to? ###
 
-* Biofractal
+* biofractal

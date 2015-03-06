@@ -1,0 +1,22 @@
+.container
+	h2 Products
+	table.table.table-bordered
+		tr.info
+			th ID
+			th Name
+			th Price
+			th Stock
+			th
+		tr(ng-repeat="product in products")
+			td {{product._id}}
+			td {{product.name}}
+			td {{product.price}}
+			td {{product.stock}}
+			td
+				button.btn.btn-primary(ng-click='purchase(product._id)')
+					|Purchase
+
+
+
+
+

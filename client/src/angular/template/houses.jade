@@ -1,0 +1,25 @@
+.container
+	h2 Houses
+	table.table.table-bordered
+		tr.info
+			th ID
+			th Client
+			th Products
+		tr(ng-repeat="house in houses")
+			td {{house._id}}
+			td {{house.client}}
+			td
+				table.table-condensed
+					tr
+						th Name
+						th Price
+						th Stock
+					tr(ng-repeat="product in house.products")
+						td {{product.name}}
+						td {{product.price}}
+						td {{product.stock}}
+
+
+
+
+

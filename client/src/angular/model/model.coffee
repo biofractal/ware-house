@@ -8,6 +8,7 @@ angular
 		product:
 			getAll:->
 			getById:(id)->
+
 		,
 
 		house:

@@ -7,13 +7,13 @@
 			th Price
 			th Stock
 			th
-		tr(ng-repeat="product in products")
+		tr(ng-repeat="product in products", ng-click="$state.go('root.product', {id:product._id})")
 			td {{product._id}}
 			td {{product.name}}
 			td {{product.price}}
 			td {{product.stock}}
 			td
-				button.btn.btn-primary(ng-click='purchase(product._id)')
+				button.btn.btn-primary(ng-click="$log.info({id:product._id})")
 					|Purchase
 
 

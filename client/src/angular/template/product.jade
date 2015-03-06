@@ -1,0 +1,20 @@
+.container
+	h2 {{product.name}}
+	table.table.table-bordered
+		tr.primary
+			th ID
+			th Name
+			th Price
+			th Stock
+		tr
+			td {{product._id}}
+			td {{product.price}}
+			td {{product.stock}}
+			td
+				button.btn.btn-primary(ng-click='purchase(product._id)')
+					|Purchase
+
+
+
+
+

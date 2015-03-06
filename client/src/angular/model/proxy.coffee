@@ -36,7 +36,7 @@ angular
 		caller = args.callee.caller.toString()
 		start = caller.indexOf '.'
 		end = caller.lastIndexOf '('
-		caller.slice start+1, end
+		method = caller.slice start+1, end
 
 	getParams=(args)->
 		names = angular.injector.$$annotate args.callee

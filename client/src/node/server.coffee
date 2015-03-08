@@ -1,7 +1,7 @@
 require('dotenv').load()
 express = require 'express'
 winston = require 'winston'
-sockets = require './service/sockets'
+sockets = require './sockets'
 
 #app
 app = express()

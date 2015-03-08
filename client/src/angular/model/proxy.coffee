@@ -2,11 +2,14 @@ angular
 .module 'client'
 .factory 'proxy', ($q, $log, $rootScope, socket, model)->
 
-	$rootScope.$on 'socket:success', (ev, res)->
-		listener res
+	$rootScope.$on 'socket:success', (event, payload)->
+		listener payload
 
-	$rootScope.$on 'socket:exception', (ev, res)->
-		$log.error res
+	$rootScope.$on 'socket:model', (event, payload)->
+		$rootScope.$broadcast 'model-changed', payload
+
+	$rootScope.$on 'socket:exception', (event, payload)->
+		$log.error payload
 
 	callbacks = {}
 	currentId = 0
@@ -17,10 +20,10 @@ angular
 			currentId = 0
 		currentId
 
-	listener = (result) ->
-		id = result.id
+	listener = (payload) ->
+		id = payload.id
 		if callbacks.hasOwnProperty(id)
-			$rootScope.$apply callbacks[id].resolve result.data
+			$rootScope.$apply callbacks[id].resolve payload.data
 			delete callbacks[id]
 
 	sendRequest= (args) =>

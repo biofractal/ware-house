@@ -1,13 +1,15 @@
 .container
 	h2 {{product.name}}
 	table.table.table-bordered
-		tr.primary
+		tr.primary.success
 			th ID
 			th Name
 			th Price
 			th Stock
+			th
 		tr
 			td {{product._id}}
+			td {{product.name}}
 			td {{product.price}}
 			td {{product.stock}}
 			td

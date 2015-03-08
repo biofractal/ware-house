@@ -12,6 +12,6 @@ module.exports =
 		]
 
 	options:
-		before:(req, res, next)->
+		beforeGet:(req, res, next)->
 			req.modelQuery = @model.where().populate 'products'
 			next()

@@ -3,8 +3,8 @@ express = require 'express'
 mongoose = require 'mongoose'
 bodyParser = require 'body-parser'
 winston = require 'winston'
-errorService = require './service/error'
-sockets = require './service/sockets'
+errorService = require './error'
+sockets = require './sockets'
 resource = require 'resourcejs'
 
 
@@ -20,9 +20,8 @@ mongoose.connect process.env.MONGO_URL
 resource(app, '', name, component.model).rest(component.options) for name, component of require './model'
 
 #app routes
-app.use '/api', [
-	require './route/root'
-]
+app.get '/', (req, res, next)->
+	res.send 'ware-house API is up and running'
 
 #error handling
 app.use errorService.log

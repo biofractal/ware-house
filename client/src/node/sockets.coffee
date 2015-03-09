@@ -1,6 +1,7 @@
 http = require 'http'
 io_browser = require 'socket.io'
 io_api = require 'socket.io-client'
+helper = require './helper'
 model = require './model'
 
 apiSocket = io_api.connect(process.env.WARE_API)
@@ -21,7 +22,7 @@ module.exports =
 		io_browser.on 'connection', (browserSocket)->
 			browserSocket.on '*', (event)->
 				model.process event, (data)->
-					data = JSON.parse data
+					data = helper.safeParseJSON data
 					return browserSocket.emit 'exception', data if data.status?
 					result=id:event.id, data:data
 					browserSocket.emit 'success', result

@@ -23,6 +23,7 @@ angular
 	listener = (payload) ->
 		id = payload.id
 		if callbacks.hasOwnProperty(id)
+			payload.data.sync=true
 			$rootScope.$apply callbacks[id].resolve payload.data
 			delete callbacks[id]
 

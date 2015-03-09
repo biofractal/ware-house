@@ -13,32 +13,34 @@ angular
 			templateUrl: "products.html"
 			resolve: products:(proxy)->
 				proxy.product.getAll()
-			controller: ($log, $rootScope, $scope, products)->
+			controller: ($scope, sync, products)->
 				$scope.products = products
-				$scope.$on 'model-changed', (event, args)->
-					return unless args.data.type is 'product'
-					item = args.data.item
-					for p,i in $scope.products
-						if item._id is p._id
-							$scope.products[i] = item
-							break
+				sync.watch $scope
 
 		.state 'root.product',
 			url:'product/:id'
 			templateUrl: "product.html"
-			resolve: product:($stateParams, $log, proxy)->
+			resolve: product:($stateParams, proxy)->
 				proxy.product.getById $stateParams.id
-			controller: ($rootScope, $scope, product)->
+			controller: ($scope, sync, product)->
 				$scope.product = product
-				$scope.$on 'model-changed', (event, args)->
-					return unless args.data.type is 'product'
-					item = args.data.item
-					$scope.product = item if item._id is $scope.product._id
+				sync.watch $scope
 
 		.state 'root.houses',
 			url:'houses'
 			templateUrl: "houses.html"
 			resolve: houses:(proxy)->
 				proxy.house.getAll()
-			controller: ($scope, houses)->
+			controller: ($scope, sync, houses)->
 				$scope.houses = houses
+				sync.watch $scope
+
+		.state 'root.house',
+			url:'house/:id'
+			templateUrl: "house.html"
+			resolve: house:($stateParams, proxy)->
+				proxy.house.getById $stateParams.id
+			controller: ($scope, sync, house)->
+				console.log house
+				$scope.house = house
+				sync.watch $scope

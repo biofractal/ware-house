@@ -5,21 +5,11 @@
 			th ID
 			th Client
 			th Products
-		tr(ng-repeat="house in houses")
+		tr(ng-repeat="house in houses", ng-click="$state.go('root.house', {id:house._id})")
 			td {{house._id}}
 			td {{house.client}}
 			td
-				table.table-condensed
-					tr
-						th Name
-						th Price
-						th Stock
-					tr(ng-repeat="product in house.products")
-						td {{product.name}}
-						td {{product.price}}
-						td {{product.stock}}
-
-
-
-
+				ul
+					li(ng-repeat="id in house.products")
+						{{id}}
 

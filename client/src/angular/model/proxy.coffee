@@ -20,10 +20,17 @@ angular
 			currentId = 0
 		currentId
 
+	setSync=(p)->
+		p.sync=true
+		for name in Object.getOwnPropertyNames p
+			if Array.isArray p[name]
+				p[name][index] = setSync item for item, index in p[name]
+		return p
+
 	listener = (payload) ->
 		id = payload.id
 		if callbacks.hasOwnProperty(id)
-			payload.data.sync=true
+			setSync payload.data
 			$rootScope.$apply callbacks[id].resolve payload.data
 			delete callbacks[id]
 

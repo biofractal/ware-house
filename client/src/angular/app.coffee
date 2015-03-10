@@ -1,5 +1,5 @@
 angular
-.module 'client', ['ui.router', 'ui.bootstrap', 'btford.socket-io']
+.module 'client', ['ui.router', 'btford.socket-io']
 .run ($rootScope, $log, $state)->
 	#localStorage.debug = 'socket.io-client*'
 	$rootScope.$log = $log

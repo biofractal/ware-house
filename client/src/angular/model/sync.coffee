@@ -1,20 +1,25 @@
 angular
 .module 'client'
 .factory 'sync', ($log)->
-	service={}
-	service.watch = (scope)->
+	synchModel=(parent, changed)->
 		names = []
-		names.push name if scope[name]?.sync for name in Object.getOwnPropertyNames scope
+		for name in Object.getOwnPropertyNames parent
+			continue unless name.indexOf('$') is -1
+			names.push(name) if parent[name]?.sync? is true or Array.isArray parent[name]
 		return if names.length is 0
 
+		for name in names
+			if Array.isArray parent[name]
+				for item,index in parent[name]
+					synchModel parent[name][index], changed
+					parent[name][index] = changed if changed._id is item._id
+			else
+				synchModel parent[name], changed
+				parent[name] = changed if changed._id is parent[name]._id
+
+	service={}
+	service.watch = (scope)->
 		scope.$on 'model-changed', (event, args)->
-			changed = args.data.item
-			$log.info name
-			for name in names
-				if Array.isArray scope[name]
-					for item,index in scope[name]
-						scope[name][index] = changed if changed._id is item._id
-				else
-					scope[name] = changed if changed._id is scope[name]._id
+			synchModel scope, args.data.item
 
 	return service

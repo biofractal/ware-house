@@ -41,6 +41,5 @@ angular
 			resolve: house:($stateParams, proxy)->
 				proxy.house.getById $stateParams.id
 			controller: ($scope, sync, house)->
-				console.log house
 				$scope.house = house
 				sync.watch $scope

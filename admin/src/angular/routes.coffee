@@ -1,0 +1,29 @@
+angular
+.module 'admin'
+.config ($stateProvider) ->
+
+	$stateProvider
+
+		.state 'root',
+			url:'/'
+			templateUrl: "root.html"
+
+		.state 'root.houses',
+			url:'houses'
+			templateUrl: "houses.html"
+			controller: ($scope, sync)->
+			resolve: houses:(proxy)->
+				proxy.house.getAll()
+			controller: ($scope, sync, houses)->
+				$scope.houses = houses
+				sync.watch $scope
+
+		.state 'root.house',
+			url:'house/:id'
+			templateUrl: "house.html"
+			controller: ($scope, sync)->
+			resolve: house:($stateParams, proxy)->
+				proxy.house.getById $stateParams.id
+			controller: ($scope, sync, house)->
+				$scope.house = house
+				sync.watch $scope

@@ -1,0 +1,15 @@
+.container
+	h2 Houses
+	table.table.table-bordered
+		tr.info
+			th ID
+			th Client
+			th Products
+		tr(ng-repeat="house in houses", ng-click="$state.go('root.house', {id:house._id})")
+			td {{house._id}}
+			td {{house.client}}
+			td
+				ul
+					li(ng-repeat="id in house.products")
+						{{id}}
+

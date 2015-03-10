@@ -30,6 +30,3 @@ module.exports =
 				browserSocket.emit 'exception', err.toString()
 
 		return server
-
-
-

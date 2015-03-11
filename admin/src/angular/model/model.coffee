@@ -6,6 +6,9 @@ angular
 		house:
 			getAll:->
 			getById:(id)->
-			update:(id, client, products)->
+			update:(item)->
+
+		product:
+			update:(item)->
 
 	return model

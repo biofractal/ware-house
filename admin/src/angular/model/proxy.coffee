@@ -6,6 +6,8 @@ angular
 		listener payload
 
 	$rootScope.$on 'socket:model', (event, payload)->
+		console.log 'received socket update'
+		console.log payload
 		$rootScope.$broadcast 'model-changed', payload
 
 	$rootScope.$on 'socket:exception', (event, payload)->

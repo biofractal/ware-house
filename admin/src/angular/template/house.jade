@@ -7,7 +7,7 @@
 			th Products
 		tr
 			td {{house._id}}
-			td {{house.client}}
+			td(editable-text="house.client") {{house.client}}
 			td
 				table.table.table-bordered
 					tr.info
@@ -15,9 +15,9 @@
 						th Price
 						th Stock
 					tr(ng-repeat="product in house.products")
-						td {{product.name}}
-						td {{product.price}}
-						td {{product.stock}}
+						td(editable-text="product.name") {{product.name}}
+						td(editable-text="product.price") {{product.price}}
+						td(editable-text="product.stock") {{product.stock}}
 
 
 

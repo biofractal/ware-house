@@ -1,5 +1,5 @@
 angular
-.module 'client'
+.module 'admin'
 .factory 'sync', ($log)->
 	synchModel=(parent, changed)->
 		names = []

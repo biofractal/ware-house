@@ -1,5 +1,5 @@
 angular
-.module 'client'
+.module 'admin'
 .factory 'proxy', ($q, $log, $rootScope, socket, model)->
 
 	$rootScope.$on 'socket:success', (event, payload)->

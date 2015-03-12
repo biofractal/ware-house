@@ -7,7 +7,7 @@
 			th Products
 		tr
 			td {{house._id}}
-			td(editable-text="house.client") {{house.client}}
+			td(editable-text="house.client" onaftersave="update()") {{house.client}}
 			td
 				table.table.table-bordered
 					tr.info

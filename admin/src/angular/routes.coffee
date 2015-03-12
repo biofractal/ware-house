@@ -13,7 +13,6 @@ angular
 			url:'houses'
 			templateUrl: "houses.html"
 			controller: ($scope, sync)->
-
 			resolve: houses:(proxy)->
 				proxy.house.getAll()
 
@@ -26,17 +25,13 @@ angular
 			url:'house/:id'
 			templateUrl: "house.html"
 			controller: ($scope, sync)->
-
 			resolve: house:($stateParams, proxy)->
 				proxy.house.getById $stateParams.id
 
 			controller: ($log, $scope, sync, proxy, house)->
 				$scope.house = house
+				$scope.update = ->
+					proxy.house.update $scope.house
+
 				sync.watch $scope
 
-				$scope.$watchCollection 'house',(changed, old)->
-					proxy.house.update changed unless changed is old
-
-				for i in [0...house.products.length]
-					$scope.$watchCollection "house.products[#{i}]", (changed, old)->
-						proxy.product.update changed unless changed is old

@@ -11,7 +11,12 @@ module.exports =
 			ref: 'product'
 		]
 
-	options:
-		beforeGet:(req, res, next)->
+	populate =(req, next)->
 			req.modelQuery = @model.where().populate 'products'
 			next()
+
+	options:
+		beforeGet:(req, res, next)->
+			populate(req, next)
+		beforePut:(req, res, next)->
+			populate(req, next)

@@ -15,9 +15,9 @@ module.exports =
 		payload =
 			client: item.client
 			products: (p._id for p in item.products)
-
+		console.log event.socketId
 		request.put
-			url:"#{process.env.WARE_API}/house/#{item._id}", headers:'socket-id': process.socketId
+			url:"#{process.env.WARE_API}/house/#{item._id}", headers:'socket-id': event.socketId
 			form:payload,
 			(err, response, data)->
 				next data

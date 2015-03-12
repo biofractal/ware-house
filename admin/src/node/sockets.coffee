@@ -9,8 +9,9 @@ module.exports =
 		apiSocket = io_api.connect apiUrl
 
 		broadcast =(action, data)->
-			return if data.socket_id is process.socketId
-			io_browser.emit 'model', action:action, status:data.status, item:data.item
+			payload=action:action, status:data.status, item:data.item
+			sender = io_browser.sockets.connected[data.socket_id]
+			sender.broadcast.emit 'model', payload
 
 		apiSocket.on 'POST', (data)-> broadcast 'new', data
 		apiSocket.on 'PUT', (data)-> broadcast 'update', data
@@ -21,8 +22,8 @@ module.exports =
 		server = http.createServer app
 		io_browser = io_browser.listen server
 		io_browser.on 'connection', (browserSocket)->
-			process.socketId = browserSocket.id
 			browserSocket.on '*', (event)->
+				event.socketId = browserSocket.id
 				model.process event, (data)->
 					data = helper.safeParseJSON data
 					return browserSocket.emit 'exception', data if data?.status?

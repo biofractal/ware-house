@@ -47,7 +47,7 @@ angular
 		method = getMethod args
 		params = getParams args
 		callbacks[id] = defer
-		socket.emit '*', id:id, method:method, params:params
+		socket.emit '*', id:id, socketId:$rootScope.socketId, method:method, params:params
 		defer.promise
 
 	getMethod=(args)->

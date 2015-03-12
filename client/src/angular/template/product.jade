@@ -13,7 +13,7 @@
 			td {{product.price}}
 			td {{product.stock}}
 			td
-				button.btn.btn-primary(ng-click='purchase(product._id)')
+				button.btn.btn-primary(ng-click='purchase(product._id, product.stock)')
 					|Purchase
 
 

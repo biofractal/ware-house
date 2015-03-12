@@ -8,7 +8,7 @@ angular
 		product:
 			getAll:->
 			getById:(id)->
-
+			purchase:(id, stock)->
 		,
 
 		house:

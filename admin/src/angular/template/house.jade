@@ -14,7 +14,7 @@
 						th Name
 						th Price
 						th Stock
-					tr(ng-repeat="product in house.products")
+					tr(ng-repeat="product in house.products track by product._id")
 						td(editable-text="product.name") {{product.name}}
 						td(editable-text="product.price") {{product.price}}
 						td(editable-text="product.stock") {{product.stock}}

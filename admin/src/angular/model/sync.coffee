@@ -1,5 +1,5 @@
 angular
-.module 'admin'
+.module 'client'
 .factory 'sync', ($log)->
 	synchModel=(parent, changed)->
 		names = []
@@ -20,6 +20,6 @@ angular
 	service={}
 	service.watch = (scope)->
 		scope.$on 'model-changed', (event, args)->
-			synchModel scope, args.data.item
+			synchModel scope, args.item
 
 	return service

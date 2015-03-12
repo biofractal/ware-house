@@ -3,16 +3,21 @@ angular
 .factory 'proxy', ($q, $log, $rootScope, socket, model)->
 
 	$rootScope.$on 'socket:success', (event, payload)->
+		console.log 'socket:success', payload
 		listener payload
 
 	$rootScope.$on 'socket:model', (event, payload)->
-		$rootScope.$broadcast 'model-changed', payload
+		console.log 'socket:model', payload
+		$rootScope.$broadcast 'model-changed', setSync payload
 
 	$rootScope.$on 'socket:exception', (event, payload)->
-		$log.error payload
+		handleSocketError event, payload
 
 	callbacks = {}
 	currentId = 0
+
+	handleSocketError=(event, payload)->
+		$log.error payload
 
 	getId = ->
 		currentId += 1
@@ -25,6 +30,8 @@ angular
 		for name in Object.getOwnPropertyNames p
 			if Array.isArray p[name]
 				p[name][index] = setSync item for item, index in p[name]
+			else if p[name] is Object(p[name])
+				 setSync p[name]
 		return p
 
 	listener = (payload) ->

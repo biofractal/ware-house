@@ -22,9 +22,11 @@ angular
 			templateUrl: "product.html"
 			resolve: product:($stateParams, proxy)->
 				proxy.product.getById $stateParams.id
-			controller: ($scope, sync, product)->
+			controller: ($scope, sync, product, proxy)->
 				$scope.product = product
 				sync.watch $scope
+				$scope.purchase=(id, stock)->
+					proxy.product.purchase id, stock
 
 		.state 'root.houses',
 			url:'houses'

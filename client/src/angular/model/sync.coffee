@@ -20,6 +20,6 @@ angular
 	service={}
 	service.watch = (scope)->
 		scope.$on 'model-changed', (event, args)->
-			synchModel scope, args.data.item
+			synchModel scope, args.item
 
 	return service

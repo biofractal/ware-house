@@ -9,11 +9,13 @@ module.exports =
 	apiConnect:(apiUrl)->
 		apiSocket = io_api.connect apiUrl
 		apiSocket.on 'POST', (item)->
-			apiSocket.emit 'model', action:'new', data:item
+			io_browser.emit 'model', action:'new', data:item
 		apiSocket.on 'PUT', (item)->
-			apiSocket.emit 'model', action:'update', data:item
+			io_browser.emit 'model', action:'replace', data:item
+		apiSocket.on 'PATCH', (item)->
+			io_browser.emit 'model', action:'update', data:item
 		apiSocket.on 'DELETE', (item)->
-			apiSocket.emit 'model', action:'remove', data:item
+			io_browser.emit 'model', action:'remove', data:item
 
 	getServer: (app) ->
 		server = http.createServer app

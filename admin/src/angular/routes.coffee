@@ -30,7 +30,4 @@ angular
 
 			controller: ($log, $scope, sync, proxy, house)->
 				$scope.house = house
-				$scope.update = ->
-					proxy.house.update $scope.house
-
 				sync.watch $scope

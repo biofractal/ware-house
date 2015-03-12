@@ -5,6 +5,7 @@ helper = require './helper'
 model = require './model'
 
 module.exports =
+
 	apiConnect:(apiUrl)->
 		apiSocket = io_api.connect apiUrl
 

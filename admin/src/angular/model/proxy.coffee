@@ -41,20 +41,13 @@ angular
 			$rootScope.$apply callbacks[id].resolve payload.data
 			delete callbacks[id]
 
-	sendRequest= (args) =>
+	sendRequest= (method, args) =>
 		defer = $q.defer()
 		id = getId()
-		method = getMethod args
 		params = getParams args
 		callbacks[id] = defer
 		socket.emit '*', id:id, socketId:$rootScope.socketId, method:method, params:params
 		defer.promise
-
-	getMethod=(args)->
-		caller = args.callee.caller.toString()
-		start = caller.indexOf '.'
-		end = caller.lastIndexOf '('
-		method = caller.slice start+1, end
 
 	getParams=(args)->
 		names = angular.injector.$$annotate args.callee
@@ -62,11 +55,11 @@ angular
 		params[name]=args[index] for name, index in names
 		params
 
-
 	for component in Object.getOwnPropertyNames(model)
 		for fn in Object.getOwnPropertyNames(model[component])
+			method= "#{component}.#{fn}"
 			source = model[component][fn].toString()
-			source = source.replace('function (', "function #{fn} (").replace '{}', '{return sendRequest(arguments);}'
+			source = source.replace('function (', "function #{fn} (").replace '{}', "{return sendRequest('#{method}', arguments);}"
 			eval(source)
 			model[component][fn] = eval(fn)
 

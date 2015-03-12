@@ -7,7 +7,7 @@
 			th Products
 		tr
 			td {{house._id}}
-			td(editable-text="house.client" onaftersave="update()") {{house.client}}
+			td(editable-text="house.client" onaftersave="proxy.house.update(house)") {{house.client}}
 			td
 				table.table.table-bordered
 					tr.info
@@ -15,9 +15,9 @@
 						th Price
 						th Stock
 					tr(ng-repeat="product in house.products track by product._id")
-						td(editable-text="product.name") {{product.name}}
-						td(editable-text="product.price") {{product.price}}
-						td(editable-text="product.stock") {{product.stock}}
+						td(editable-text="product.name" onaftersave="proxy.product.update(product)") {{product.name}}
+						td(editable-text="product.price" onaftersave="proxy.product.update(product)") {{product.price}}
+						td(editable-text="product.stock" onaftersave="proxy.product.update(product)") {{product.stock}}
 
 
 

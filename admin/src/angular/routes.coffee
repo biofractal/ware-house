@@ -34,4 +34,3 @@ angular
 					proxy.house.update $scope.house
 
 				sync.watch $scope
-

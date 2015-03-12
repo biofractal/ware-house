@@ -1,13 +1,12 @@
 sockets = require '../sockets'
 mongoose = require 'mongoose'
 components = require('require-dir')()
-patcher = require 'mongoose-json-patch'
 model = {}
 
 setDefaultOptions = (options)->
 	emit = (method, next)->
 		(req, res, next)->
-			sockets.emit method, item:res.resource
+			sockets.emit method, socket_id:req.headers['socket-id'], status:res.resource.status, item:res.resource.item
 			next()
 
 	options = {} unless options?
@@ -18,8 +17,6 @@ setDefaultOptions = (options)->
 	return options
 
 for name, component of components
-	component.schema.plugin patcher
-	component.model = mongoose.model name, component.schema
 	component.options = setDefaultOptions component.options
 	model[name] = component
 

@@ -17,7 +17,7 @@ app.use bodyParser.json()
 mongoose.connect process.env.MONGO_URL
 
 #model routes
-resource(app, '', name, component.model).rest(component.options) for name, component of require './model'
+resource(app, '', name, component.schema).rest(component.options) for name, component of require './model'
 
 #app routes
 app.get '/', (req, res, next)->

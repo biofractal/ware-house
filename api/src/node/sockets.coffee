@@ -9,6 +9,6 @@ module.exports =
 
 	emit: (event, data)->
 		console.log 'event: ', event
-		console.log 'data : ', data.item
-		io.emit event, data.item
+		console.log 'data : ', data
+		io.emit event, data
 

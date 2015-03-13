@@ -17,6 +17,7 @@ setDefaultOptions = (options)->
 	return options
 
 for name, component of components
+	component.model = mongoose.model name, component.schema
 	component.options = setDefaultOptions component.options
 	model[name] = component
 

@@ -12,7 +12,8 @@ module.exports =
 		broadcast =(action, data)->
 			payload=action:action, status:data.status, item:data.item
 			sender = io_browser.sockets.connected[data.socket_id]
-			sender.broadcast.emit 'model', payload
+			return sender.broadcast.emit('model', payload) if sender?
+			io_browser.emit 'model', payload
 
 		apiSocket.on 'POST', (data)-> broadcast 'new', data
 		apiSocket.on 'PUT', (data)-> broadcast 'update', data

@@ -27,6 +27,8 @@ angular
 				sync.watch $scope
 				$scope.purchase=(id, stock)->
 					proxy.product.purchase id, stock
+					.then (product)->
+						$scope.product = product
 
 		.state 'root.houses',
 			url:'houses'

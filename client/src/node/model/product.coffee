@@ -13,11 +13,10 @@ module.exports =
 	purchase:(event, next)->
 		url = "#{process.env.WARE_API}/product/#{event.params.id}"
 		patch =[
-			"op": "test", "path": "/stock", "value": event.params.stock+1
+			"op": "test", "path": "/stock", "value": event.params.stock
 		,
 			"op": "replace", "path": "/stock", "value": event.params.stock-1
 		]
-		console.log patch
 		options = url:url, json:true, body:patch, headers:'socket-id': event.socketId
 		request.patch options, (err, response, data)->
 			next data

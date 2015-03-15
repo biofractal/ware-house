@@ -1,28 +1,21 @@
 angular
 .module 'client'
 .factory 'proxy', ($q, $log, $rootScope, socket, model)->
-
-	$rootScope.$on 'socket:success', (event, payload)->
-		console.log 'socket:success', payload
-		listener payload
-
-	$rootScope.$on 'socket:model', (event, payload)->
-		console.log 'socket:model', payload
-		$rootScope.$broadcast 'model-changed', setSync payload
-
-	$rootScope.$on 'socket:exception', (event, payload)->
-		handleSocketError event, payload
-
 	callbacks = {}
 	currentId = 0
 
-	handleSocketError=(event, payload)->
+	$rootScope.$on 'socket:success', (event, payload)->
+		listener payload
+
+	$rootScope.$on 'socket:model', (event, payload)->
+		$rootScope.$broadcast 'model-changed', setSync payload
+
+	$rootScope.$on 'socket:exception', (event, payload)->
 		$log.error payload
 
 	getId = ->
 		currentId += 1
-		if currentId > 10000
-			currentId = 0
+		currentId = 0 if currentId > 10000
 		currentId
 
 	setSync=(p)->

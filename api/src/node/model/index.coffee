@@ -5,8 +5,11 @@ model = {}
 
 setDefaultOptions = (options)->
 	emit = (method, next)->
-		(req, res, next)->
-			sockets.emit method, socket_id:req.headers['socket-id'], status:res.resource.status, item:res.resource.item
+		(req, res, next) ->
+			data = socket_id:req.headers['socket-id'], status:res.resource.status, item:res.resource.item
+			data.name = res.resource.name if res.resource.name?
+			data.message = res.resource.message if res.resource.message?
+			sockets.emit method, data
 			next()
 
 	options = {} unless options?

@@ -1,7 +1,7 @@
 require('dotenv').load()
 express = require 'express'
 winston = require 'winston'
-sockets = require './sockets'
+sockets = require 'socket-sauce'
 
 #app
 app = express()
@@ -11,7 +11,7 @@ app.use express.static 'bower_components'
 
 #socketed app start
 sockets.apiConnect process.env.WARE_API if process.env.WARE_API?
-sockets.getServer(app).listen process.env.NODE_PORT, ->
+sockets.getServer(app, './lib/node/model/').listen process.env.NODE_PORT, ->
 	winston.info "socketed node server listening on port #{process.env.NODE_PORT}"
 
 

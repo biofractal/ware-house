@@ -14,7 +14,7 @@
     "mongoose": "^3.8.24",
     "request": "^2.51.0",
     "require-dir": "^0.1.0",
-    "resourcejs": "^0.1.11",
+    "resourcejs": "git://github.com/biofractal/resourcejs.git#patch",
     "socket.io": "^1.3.4",
     "winston": "^0.8.3"
   }

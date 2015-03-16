@@ -1,5 +1,5 @@
 angular
-.module 'admin', ['ui.router', 'btford.socket-io', 'xeditable']
+.module 'admin', ['ui.router', 'socket-sauce', 'xeditable']
 .run ($rootScope, $state, proxy, editableOptions)->
 
 	editableOptions.theme = 'bs3'

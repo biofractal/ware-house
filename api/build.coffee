@@ -7,7 +7,7 @@ cp '-r', 'src/public/*', 'lib/public' if test '-e', 'src/public'
 cp '.env', 'lib'
 
 exec 'coffee --watch -o lib/ -c src/', async: true
-child = exec 'nodemon ./lib/node/server.js', async: true
+child = exec 'nodemon ./lib/server.js', async: true
 
 isOpen = false
 child.stdout.on 'data', (data)->

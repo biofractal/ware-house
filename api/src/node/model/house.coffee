@@ -1,5 +1,4 @@
 mongoose = require 'mongoose'
-helper = require '../helper'
 Schema = mongoose.Schema
 
 module.exports =

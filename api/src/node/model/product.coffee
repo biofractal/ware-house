@@ -1,4 +1,3 @@
-sockets = require '../sockets'
 mongoose = require 'mongoose'
 Schema = mongoose.Schema
 

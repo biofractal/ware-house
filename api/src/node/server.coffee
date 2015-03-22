@@ -5,7 +5,6 @@ bodyParser = require 'body-parser'
 winston = require 'winston'
 errorService = require './error'
 sockets = require 'socket-sauce-rest-api'
-resource = require 'resourcejs'
 
 
 #app

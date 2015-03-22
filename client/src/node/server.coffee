@@ -1,7 +1,7 @@
 require('dotenv').load()
 express = require 'express'
 winston = require 'winston'
-sockets = require 'socket-sauce'
+sockets = require 'socket-sauce-proxy'
 
 #app
 app = express()

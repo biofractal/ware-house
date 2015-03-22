@@ -12,6 +12,6 @@
   ],
   "dependencies": {
     "angular-socket-io": "~0.7.0",
-    "socket-sauce-angular": "https://biofractal:CsIExcyRU6eL@github.com/biofractal/socket-sauce-angular.git"
+    "socket-sauce-angular": "https://github.com/biofractal/socket-sauce-angular.git"
   }
 }

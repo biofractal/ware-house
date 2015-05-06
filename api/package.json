@@ -15,8 +15,8 @@
     "request": "^2.51.0",
     "require-dir": "^0.1.0",
     "resourcejs": "^0.1.12",
+    "socket-sauce-api": "git://github.com/biofractal/socket-sauce-api.git",
     "socket.io": "^1.3.4",
-    "winston": "^0.8.3",
-    "socket-sauce-rest-api":"git://github.com/biofractal/socket-sauce-rest-api.git"
+    "winston": "^0.8.3"
   }
 }

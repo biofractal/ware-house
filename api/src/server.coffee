@@ -4,7 +4,7 @@ mongoose = require 'mongoose'
 bodyParser = require 'body-parser'
 winston = require 'winston'
 errorService = require './error'
-sockets = require 'socket-sauce-rest-api'
+sockets = require 'socket-sauce-api'
 
 
 #app
@@ -15,12 +15,12 @@ app.use bodyParser.json()
 #mongoose
 mongoose.connect process.env.MONGO_URL
 
-#model routes
-sockets.rest app, './lib/model'
-
 #app routes
 app.get '/', (req, res, next)->
 	res.send 'ware-house API is up and running'
+
+#model routes
+sockets.generateRestAPI app, './lib/model'
 
 #error handling
 app.use errorService.log

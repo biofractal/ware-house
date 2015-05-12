@@ -19,9 +19,6 @@ mongoose.connect process.env.MONGO_URL
 app.get '/', (req, res, next)->
 	res.send 'ware-house API is up and running'
 
-#model routes
-sockets.generateRestAPI app, './lib/model'
-
 #error handling
 app.use errorService.log
 app.use errorService.handle
@@ -29,7 +26,7 @@ app.use errorService.handle
 #socketed app start
 port = process.env.NODE_PORT
 sockets
-.getServer app
+.getServer app, './lib/model'
 .listen port, ->
 	winston.info "node server listening on port #{port}"
 

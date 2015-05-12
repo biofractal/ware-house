@@ -1,8 +1,11 @@
 mongoose = require 'mongoose'
 Schema = mongoose.Schema
 
-module.exports =
+populate = (req, res, next)->
+	req.modelQuery = @model.where().populate 'products'
+	next()
 
+module.exports =
 	schema: new Schema
 		client		: String
 		products	: [
@@ -10,13 +13,18 @@ module.exports =
 			ref: 'product'
 		]
 
-	setup:(resource)->
-		options =
-			beforeGet:(req, res, next)->
-				req.modelQuery = @model.where().populate 'products'
-				next()
-			beforePut:(req, res, next)->
-				req.modelQuery = @model.where().populate 'products'
-				next()
+	options:[
+		method : "INDEX"
+		secure : true
+	,
+		method : "GET"
+		secure : true
+		before : populate
+	,
+		method : "PUT"
+		secure : true
+		update : true
+		before : populate
+	]
 
-		resource.rest options
+

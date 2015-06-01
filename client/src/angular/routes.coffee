@@ -1,49 +1,50 @@
 angular
-.module 'client'
+.module 'ware-house-client'
 .config ($stateProvider) ->
 
 	$stateProvider
 
-		.state 'root',
+		.state 'app',
 			url:'/'
-			templateUrl: "root.html"
+			templateUrl: "app.html"
+			data: requireLogin: true
 
-		.state 'root.products',
+		.state 'app.authenticate',
+			url:'authenticate'
+			templateUrl: "authenticate.html"
+			data: requireLogin: false
+			controller: 'authenticate'
+
+		.state 'app.verify',
+			url:'verify/:vid'
+			templateUrl: "verify.html"
+			data: requireLogin: false
+			controller: 'verify'
+
+		.state 'app.products',
 			url:'products'
 			templateUrl: "products.html"
-			resolve: products:(proxy)->
-				proxy.product.getAll()
-			controller: ($scope, sync, products)->
-				$scope.products = products
-				sync.watch $scope
+			resolve:
+				products:(proxy)-> proxy.product.getAll()
+			controller: 'products'
 
-		.state 'root.product',
+		.state 'app.product',
 			url:'product/:id'
 			templateUrl: "product.html"
-			resolve: product:($stateParams, proxy)->
-				proxy.product.getById $stateParams.id
-			controller: ($scope, sync, product, proxy)->
-				$scope.product = product
-				sync.watch $scope
-				$scope.purchase=(id, stock)->
-					proxy.product.purchase id, stock
-					.then (product)->
-						$scope.product = product
+			resolve:
+				product:($stateParams, proxy)-> proxy.product.getById $stateParams.id
+			controller: 'product'
 
-		.state 'root.houses',
+		.state 'app.houses',
 			url:'houses'
 			templateUrl: "houses.html"
-			resolve: houses:(proxy)->
-				proxy.house.getAll()
-			controller: ($scope, sync, houses)->
-				$scope.houses = houses
-				sync.watch $scope
+			resolve:
+				houses:(proxy)-> proxy.house.getAll()
+			controller: 'house'
 
-		.state 'root.house',
+		.state 'app.house',
 			url:'house/:id'
 			templateUrl: "house.html"
-			resolve: house:($stateParams, proxy)->
-				proxy.house.getById $stateParams.id
-			controller: ($scope, sync, house)->
-				$scope.house = house
-				sync.watch $scope
+			resolve:
+				house:($stateParams, proxy)-> proxy.house.getById $stateParams.id
+			controller: 'house'

@@ -1,4 +1,9 @@
 .container
+	.btn-group
+		a.btn.btn-default(ui-sref="app.houses")
+			|Houses
+
+.container
 	h2 Products
 	table.table.table-bordered
 		tr.info
@@ -13,7 +18,7 @@
 			td {{product.price}}
 			td {{product.stock}}
 			td
-				button.btn.btn-primary(ng-click="$state.go('root.product', {id:product._id})")
+				button.btn.btn-primary(ng-click="$state.go('app.product', {id:product._id})")
 					|View
 
 

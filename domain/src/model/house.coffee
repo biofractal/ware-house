@@ -1,5 +1,4 @@
-mongoose = require 'mongoose'
-Schema = mongoose.Schema
+{Schema} = require 'mongoose'
 
 populate = (req, res, next)->
 	req.modelQuery = @model.where().populate 'products'
@@ -13,18 +12,17 @@ module.exports =
 			ref: 'product'
 		]
 
-	options:[
-		method : "INDEX"
+	options:
 		secure : true
-	,
-		method : "GET"
-		secure : true
-		before : populate
-	,
-		method : "PUT"
-		secure : true
-		update : true
-		before : populate
-	]
+		rest:[
+			method : "INDEX"
+		,
+			method : "GET"
+			before : populate
+		,
+			method : "PUT"
+			update : true
+			before : populate
+		]
 
 

@@ -1,7 +1,5 @@
 require 'shelljs/global'
 
-require 'shelljs/global'
-
 rm '-rf', 'lib'
 mkdir '-p', 'lib'
 

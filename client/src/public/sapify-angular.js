@@ -170,8 +170,20 @@
     return model;
   });
 
-  angular.module('sapify-angular').factory('sso', function($log, $rootScope, $location, $state, socket) {
-    $rootScope.relayState = {};
+  angular.module('sapify-angular').config(function($stateProvider) {
+    return $stateProvider.state('sapify', {
+      url: '/sapify/sso/verified/:state/:usertoken',
+      data: {
+        requiresSSO: false
+      },
+      controller: function($rootScope, $state) {
+        $rootScope.usertoken = $state.params.usertoken;
+        return $state.go($state.params.state);
+      }
+    });
+  });
+
+  angular.module('sapify-angular').run(function($rootScope, $location, socket) {
     return $rootScope.$on('$stateChangeStart', function(event, toState, toParams) {
       var key, returnUrl, _ref;
       if (!((_ref = toState.data) != null ? _ref.requiresSSO : void 0) || ($rootScope.usertoken != null)) {
@@ -185,19 +197,6 @@
         state: toState.name,
         isSecure: $location.protocol() === 'https'
       });
-    });
-  });
-
-  angular.module('sapify-angular').config(function($stateProvider) {
-    return $stateProvider.state('sapify', {
-      url: '/sapify/sso/verified/:state/:usertoken',
-      data: {
-        requiresSSO: false
-      },
-      controller: function($rootScope, $state) {
-        $rootScope.usertoken = $state.params.usertoken;
-        return $state.go($state.params.state);
-      }
     });
   });
 

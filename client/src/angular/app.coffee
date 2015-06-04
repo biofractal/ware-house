@@ -1,6 +1,6 @@
 angular
 .module 'ware-house-client', ['ui.router', 'sapify-angular']
-.run ($rootScope, $state, $log, proxy, sso)->
+.run ($rootScope, $state, $log, proxy)->
 
 	$rootScope.$state = $state
 	$rootScope.proxy = proxy

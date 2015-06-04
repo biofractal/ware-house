@@ -7,19 +7,7 @@ angular
 		.state 'app',
 			url:'/'
 			templateUrl: "app.html"
-			data: requireLogin: true
-
-		.state 'app.authenticate',
-			url:'authenticate'
-			templateUrl: "authenticate.html"
-			data: requireLogin: false
-			controller: 'authenticate'
-
-		.state 'app.verify',
-			url:'verify/:vid'
-			templateUrl: "verify.html"
-			data: requireLogin: false
-			controller: 'verify'
+			data: requiresSSO: true
 
 		.state 'app.products',
 			url:'products'
@@ -40,7 +28,7 @@ angular
 			templateUrl: "houses.html"
 			resolve:
 				houses:(proxy)-> proxy.house.getAll()
-			controller: 'house'
+			controller: 'houses'
 
 		.state 'app.house',
 			url:'house/:id'

@@ -17,4 +17,4 @@ isOpen = false
 child.stdout.on 'data', (data)->
 	if data.indexOf('on port') > -1 and not isOpen
 		isOpen = true
-		exec 'opener http://localhost:3001/#/', async: true
+		exec 'opener http://localhost:3001/#/products', async: true

@@ -6,8 +6,8 @@
     "build": "shjs build.coffee"
   },
   "dependencies": {
-    "@gp-technical/sapify-angular": "^1.0.5",
-    "@gp-technical/sapify-proxy": "^1.0.21",
+    "@gp-technical/sapify-angular": "^1.0.59",
+    "@gp-technical/sapify-proxy": "^1.0.48",
     "dotenv": "^0.4.0",
     "express": "^4.10.6",
     "winston": "^0.8.3"

@@ -82,13 +82,6 @@
       return $log.error(payload);
     });
     $rootScope.$on('socket:redirect', function(event, payload) {
-      var cookie, _i, _len, _ref;
-      console.log('cookies', payload.cookies);
-      _ref = payload.cookies;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        cookie = _ref[_i];
-        $window.document.cookie = cookie;
-      }
       return $window.location.href = payload.url;
     });
     getId = function() {
@@ -182,22 +175,8 @@
       returnUrl = ($location.protocol()) + "://" + ($location.host()) + ":" + ($location.port()) + "/#/sapify/sso/verified";
       return socket.emit('authenticate', {
         returnUrl: returnUrl,
-        state: toState.name,
-        isSecure: $location.protocol() === 'https'
+        state: toState.name
       });
-    });
-  });
-
-  angular.module('sapify-angular').config(function($stateProvider) {
-    return $stateProvider.state('sapify', {
-      url: '/sapify/sso/verified/:state/:usertoken',
-      data: {
-        requiresSSO: false
-      },
-      controller: function($rootScope, $state) {
-        $rootScope.usertoken = $state.params.usertoken;
-        return $state.go($state.params.state);
-      }
     });
   });
 
